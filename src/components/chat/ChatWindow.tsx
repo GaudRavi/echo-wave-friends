@@ -89,9 +89,9 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
   }
 
   return (
-    <div className="h-full flex flex-col bg-white">
-      {/* Chat Header */}
-      <div className="border-b p-4 bg-white">
+    <div className="h-full flex flex-col bg-white relative">
+      {/* Sticky Chat Header */}
+      <div className="sticky top-0 z-10 border-b p-4 bg-white shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
@@ -136,8 +136,8 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
         </div>
       </div>
       
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      {/* Messages - with padding to account for sticky elements */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-24">
         {mockMessages.map((msg) => (
           <div
             key={msg.id}
@@ -188,8 +188,8 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
         <div ref={messagesEndRef} />
       </div>
       
-      {/* Message Input */}
-      <div className="border-t p-4 bg-white">
+      {/* Sticky Message Input */}
+      <div className="sticky bottom-0 z-10 border-t p-4 bg-white shadow-lg">
         <form onSubmit={handleSendMessage} className="flex items-center space-x-2">
           <Button type="button" variant="ghost" size="icon" className="h-8 w-8">
             <Paperclip className="h-4 w-4" />
