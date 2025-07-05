@@ -15,7 +15,7 @@ export const ChatApp = ({ user, onLogout }: ChatAppProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="h-screen flex bg-gray-50">
+    <div className="h-screen flex bg-gray-50 overflow-hidden">
       {/* Mobile sidebar overlay */}
       {isSidebarOpen && (
         <div 
@@ -24,25 +24,27 @@ export const ChatApp = ({ user, onLogout }: ChatAppProps) => {
         />
       )}
       
-      {/* Sidebar */}
+      {/* Sidebar - with independent scrolling */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-80 bg-white border-r transform transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-50 w-80 bg-white border-r transform transition-transform duration-300 ease-in-out overflow-hidden
         md:relative md:translate-x-0 md:z-0
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <ChatSidebar 
-          user={user}
-          onLogout={onLogout}
-          selectedChat={selectedChat}
-          onSelectChat={setSelectedChat}
-          onCloseSidebar={() => setIsSidebarOpen(false)}
-        />
+        <div className="h-full overflow-y-auto">
+          <ChatSidebar 
+            user={user}
+            onLogout={onLogout}
+            selectedChat={selectedChat}
+            onSelectChat={setSelectedChat}
+            onCloseSidebar={() => setIsSidebarOpen(false)}
+          />
+        </div>
       </div>
       
-      {/* Main chat area */}
-      <div className="flex-1 flex flex-col">
+      {/* Main chat area - with independent scrolling */}
+      <div className="flex-1 flex flex-col overflow-hidden">
         {/* Mobile header */}
-        <div className="md:hidden bg-white border-b p-4 flex items-center justify-between">
+        <div className="md:hidden bg-white border-b p-4 flex items-center justify-between flex-shrink-0">
           <Button
             variant="ghost"
             size="icon"
@@ -54,8 +56,8 @@ export const ChatApp = ({ user, onLogout }: ChatAppProps) => {
           <div className="w-10" /> {/* Spacer */}
         </div>
         
-        {/* Chat window */}
-        <div className="flex-1">
+        {/* Chat window - takes remaining height and scrolls independently */}
+        <div className="flex-1 overflow-hidden">
           <ChatWindow 
             selectedChat={selectedChat}
             currentUser={user}

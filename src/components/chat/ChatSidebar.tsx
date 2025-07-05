@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -74,8 +73,8 @@ export const ChatSidebar = ({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header */}
-      <div className="p-4 border-b bg-white">
+      {/* Header - fixed */}
+      <div className="flex-shrink-0 p-4 border-b bg-white">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
             <Avatar className="h-10 w-10">
@@ -120,8 +119,8 @@ export const ChatSidebar = ({
         </div>
       </div>
       
-      {/* Tabs */}
-      <div className="flex border-b bg-white">
+      {/* Tabs - fixed */}
+      <div className="flex-shrink-0 flex border-b bg-white">
         <Button
           variant={activeTab === 'chats' ? 'default' : 'ghost'}
           size="sm"
@@ -142,15 +141,15 @@ export const ChatSidebar = ({
         </Button>
       </div>
       
-      {/* New Chat Button */}
-      <div className="p-4 border-b bg-white">
+      {/* New Chat Button - fixed */}
+      <div className="flex-shrink-0 p-4 border-b bg-white">
         <Button className="w-full" size="sm">
           <Plus className="h-4 w-4 mr-2" />
           New Chat
         </Button>
       </div>
       
-      {/* Chat List */}
+      {/* Chat List - scrollable */}
       <div className="flex-1 overflow-y-auto">
         {filteredChats.map((chat) => (
           <Card 

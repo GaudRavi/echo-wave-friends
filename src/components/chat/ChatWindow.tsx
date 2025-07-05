@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -89,9 +88,9 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
   }
 
   return (
-    <div className="h-full flex flex-col bg-white relative">
+    <div className="h-full flex flex-col bg-white">
       {/* Sticky Chat Header */}
-      <div className="sticky top-0 z-10 border-b p-4 bg-white shadow-sm">
+      <div className="flex-shrink-0 border-b p-4 bg-white shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="relative">
@@ -136,8 +135,8 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
         </div>
       </div>
       
-      {/* Messages - with padding to account for sticky elements */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-24">
+      {/* Messages - scrollable area */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {mockMessages.map((msg) => (
           <div
             key={msg.id}
@@ -189,7 +188,7 @@ export const ChatWindow = ({ selectedChat, currentUser }: ChatWindowProps) => {
       </div>
       
       {/* Sticky Message Input */}
-      <div className="sticky bottom-0 z-10 border-t p-4 bg-white shadow-lg">
+      <div className="flex-shrink-0 border-t p-4 bg-white shadow-lg">
         <form onSubmit={handleSendMessage} className="flex items-center space-x-2">
           <Button type="button" variant="ghost" size="icon" className="h-8 w-8">
             <Paperclip className="h-4 w-4" />
